@@ -151,7 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e6ee2e680366ec4ea37f909b014bbad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voxelFactory: {fileID: 0}
+  voxelFactory: {fileID: 346325325}
+  voxelPoolSize: 20
 --- !u!4 &70559299
 Transform:
   m_ObjectHideFlags: 0
@@ -318,6 +319,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 200
+--- !u!1 &346325325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1126246570159291285, guid: d3323e2b237191c40b4cee9df6b83e86,
+    type: 3}
+  m_PrefabInstance: {fileID: 3296362744221813610}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

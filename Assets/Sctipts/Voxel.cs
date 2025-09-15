@@ -22,7 +22,10 @@ public class Voxel : MonoBehaviour
         currentTime =  currentTime + Time.deltaTime;
         if(currentTime > destroyTime) //시간이 초과
         {
-             Destroy(gameObject);
+             // 복셀이 자기자신을 비활성화 함
+             gameObject.SetActive(false);
+             //Destroy(gameObject);
+             VoxelMaker.voxelPool.Add(gameObject); // VoxelMaker의 오브젝트 풀을 자기자신의 추가
         }
     }
 }
