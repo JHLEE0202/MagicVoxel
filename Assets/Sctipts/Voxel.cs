@@ -12,7 +12,7 @@ public class Voxel : MonoBehaviour
     {
         Vector3 direction = Random.insideUnitSphere; // 크기가 1이고 방향만 존재함
         
-        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>(); //rb의 velocity값을 가져옴
         rb.velocity = direction * speed; 
     }
 
