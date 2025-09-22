@@ -12,6 +12,11 @@ public class VoxelMaker : MonoBehaviour
     // 오브젝트 풀 (배열개념)
     public static List<GameObject> voxelPool = new List<GameObject>();//static은 class에서 1개 (전체에서 1개)
 
+    float currentTime = 0;
+    float creatTime = 0.1f;
+
+    public Transform crosshair;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,23 +33,35 @@ public class VoxelMaker : MonoBehaviour
     // Update is called once per frame
     void Update()
         { 
-         if (Input.GetButtonDown("Fire1"))
+         
+         ARAVRInput.DrawCrosshair(crosshair);
+         
+         if (ARAVRInput.Get(ARAVRInput.Button.One))
         {
-             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-             RaycastHit hitInfo = new RaycastHit();
+         Ray ray = new Ray(ARAVRInput.RHandPosition,ARAVRInput.RHandDirection);
+         RaycastHit hitInfo = new RaycastHit();
 
-             if (Physics.Raycast(ray, out hitInfo))
-             {
-                 if(voxelPool.Count > 0) //오브젝트 풀 안에 voxel이 있는지 확인
+
+         currentTime += Time.deltaTime;
+
+         if(currentTime > creatTime)
+         {
+             if(voxelPool.Count > 0) //오브젝트 풀 안에 voxel이 있는지 확인
+                  if (Physics.Raycast(ray, out hitInfo))
+            {
                  {
                  GameObject voxel = voxelPool[0]; //GameObject voxel = Instantiate(voxelFactory); 이 코드가 오브젝트 풀의 의해서 대체됨 / 오브젝트 풀 최상단의 값을 가져옴
                  voxel.SetActive(true);//객체를 활성화함
                  voxel.transform.position = hitInfo.point; // RayCast를 통해 얻은 충돌지점의 위치로 객체 이동
                  voxelPool.RemoveAt(0); // 오브젝트 풀에서 voxel 1개 제거
+                 currentTime = 0;
                  }
-             }
+            }
+         } 
+             
+        }
 
         }
-        }
+        
 }
 
